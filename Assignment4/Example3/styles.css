@@ -1,0 +1,136 @@
+:root {
+    box-sizing: border-box;
+}
+
+*,
+::before,
+::after {
+    box-sizing: inherit;
+}
+
+body {
+    font-family: Helvetica, Arial, sans-serif;
+    background-image: linear-gradient(to bottom right, white, rgb(39, 44, 61));
+    padding: 2em;   
+}
+
+/* CONTAINER MODULE SET */
+
+.container {
+    display: grid;
+    grid-template-areas: "header  header"
+                         "aside1  main1"
+                         "aside2  main2"
+                         "aside3  main3"
+                         "aside4  main4";
+    grid-template-columns: 1fr 5fr;
+    grid-template-rows: repeat(5, auto);
+    grid-gap: 0;
+    max-width: 1080px;
+    margin: 0 auto;
+}
+
+.container__header {
+    grid-area: header;
+}
+
+.container__main__top {
+    grid-area: main1;
+}
+
+.container__main__middle1 {
+    grid-area: main2;
+}
+
+.container__main__middle2 {
+    grid-area: main3;
+}
+
+.container__main__bottom {
+    grid-area: main4;
+}
+
+.container__sidebar__top {
+    grid-area: aside1;
+}
+
+.container__sidebar__middle1 {
+    grid-area: aside2;
+}
+
+.container__sidebar__middle2 {
+    grid-area: aside3;
+}
+
+.container__sidebar__bottom {
+    grid-area: aside4;
+}
+
+.container__tile {
+    padding: 0;
+}
+
+/* HEADER MODULE SET */
+
+header {
+    list-style-type: none;
+}
+
+.header__styling {
+    font-family: Helvetica, Arial, sans-serif;
+    background-color: white;
+    color: black;
+    padding: 2em 2.5em;
+}
+
+.header__title {
+    font-size: 2em;
+    font-weight: bold;
+}
+
+.header__alt-color {
+    color: rgb(87, 131, 193);
+}
+
+.header__subtitle {
+    font-size: .7em;
+    color: gray;
+}
+
+.header__separator {
+    color: rgb(87, 131, 193);
+}
+
+/* MAIN MODULE SET */
+
+.main__styling {
+    font-family: Helvetica, Arial, sans-serif;
+    background-color: white;
+    padding: .5em 1.5em;
+    border-top: .13em dotted #ccc;
+}
+
+
+/* SIDEBAR MODULE SET */
+
+.sidebar__styling {
+    font-family: Helvetica, Arial, sans-serif;
+    background-color: white;
+    padding: .5em 1.5em;
+    border-top: .13em dotted #ccc;
+}
+
+.sidebar__heading {
+    color:rgb(87, 131, 193);
+    text-transform: uppercase;
+}
+
+/* UTILITY SET */
+
+.indent {
+    margin-left: 1.5em !important;
+}
+
+.thin-text {
+    font-weight: 100 !important;
+}

@@ -1,0 +1,232 @@
+:root {
+    box-sizing: border-box;
+}
+
+*,
+::before,
+::after {
+    box-sizing: inherit;
+}
+
+body {
+    font-family: Helvetica, Arial, sans-serif;
+    background-image: linear-gradient(to bottom right, white, rgb(28, 68, 202));
+    padding: 2em 5em;
+}
+
+/* CONTAINER MODULE SET */
+
+.container {
+    display: grid;
+    grid-template-areas: "aside1  main1"
+                         "aside2  main2"
+                         "aside3  main3"
+                         "aside4  main4";
+    grid-template-columns: 2fr;
+    grid-template-rows: repeat(4, auto);
+    grid-gap: 0;
+    max-width: 1080px;
+    margin: 0 auto;
+    
+}
+
+.container__main__top {
+    grid-area: main1;
+}
+
+.container__main__middle1 {
+    grid-area: main2;
+}
+
+.container__main__middle2 {
+    grid-area: main3;
+}
+
+.container__main__bottom {
+    grid-area: main4;
+}
+
+.container__aside__top {
+    grid-area: aside1;
+}
+
+.container__aside__middle1 {
+    grid-area: aside2;
+}
+
+.container__aside__middle2 {
+    grid-area: aside3;
+}
+
+.container__aside__bottom {
+    grid-area: aside4;
+}
+
+.container__tile {
+    padding: 0;
+}
+
+.container__tile > :first-child {
+    margin-top: 0;
+}
+
+/* SUBCONTAINER MODULE SET */
+
+.subcontainer {
+    display: grid;
+    grid-template-areas: "subaside1  submain1"
+                         "subaside2  submain2";
+    grid-template-columns: .5fr 4fr;
+    grid-template-rows: repeat(2, auto);
+    padding: 0 auto;
+    grid-gap: 2em;
+}
+
+.subcontainer__main__top {
+    grid-area: submain1;
+}
+
+.subcontainer__main__bottom {
+    grid-area: submain2;
+}
+
+.subcontainer__aside__top {
+    grid-area: subaside1;
+}
+
+.subcontainer__aside__bottom {
+    grid-area: subaside2;
+}
+
+.subcontainer__tile {
+    padding: .1em;
+}
+
+/* MAIN MODULE SET */
+
+.main__styling {
+    font-family: Helvetica, Arial, sans-serif;
+    font-size: .75em;
+    background-color: white;
+    padding: 1em;
+    line-height: 2em;
+}
+
+.main__heading {
+    padding: .3em 0;
+    border-top: 1px solid #ccc;
+    border-bottom: 1px solid #ccc;
+    font-size: 1.3em;
+    color: rgb(12, 43, 80);
+}
+
+.main__subheading {
+    font-size: 1.1em;
+}
+
+/* SIDEBAR MODULE SET */
+
+.sidebar__styling {
+    font-family: Helvetica, Arial, sans-serif;
+    font-size: .75em;
+    background-color: #13396C;
+    color: white;
+    padding: 1em;
+}
+
+.sidebar__header__title {
+    font-size: 2em;
+    font-weight: bold;
+}
+
+.sidebar__header__subtitle {
+    font-size: 1.3em;
+    line-height: 0;
+}
+
+.sidebar__heading {
+    background-color: rgb(12, 43, 80);
+    padding: .3em .5em;
+    margin: -.65em;
+    font-size: 1.5em;   
+}
+
+.sidebar__pad {
+    padding: 1em 0 0 0;
+}
+
+/* PROGRESS BAR MODULE SET */
+
+.progressbar__styling {
+    background-color: rgb(12, 43, 80);
+}
+  
+.progressbar__10 {
+    background-color: white;
+    width: 10%;
+    height: 1em;
+}
+
+.progressbar__20 {
+    background-color: white;
+    width: 20%;
+    height: 1em;
+}
+
+.progressbar__30 {
+    background-color: white;
+    width: 30%;
+    height: 1em;
+}
+
+.progressbar__40 {
+    background-color: white;
+    width: 40%;
+    height: 1em;
+}
+
+.progressbar__50 {
+    background-color: white;
+    width: 50%;
+    height: 1em;
+}
+
+.progressbar__60 {
+    background-color: white;
+    width: 60%;
+    height: 1em;
+}
+
+.progressbar__70 {
+    background-color: white;
+    width: 70%;
+    height: 1em;
+}
+
+.progressbar__80 {
+    background-color: white;
+    width: 80%;
+    height: 1em;
+}
+
+.progressbar__90 {
+    background-color: white;
+    width: 90%;
+    height: 1em;
+}
+
+.progressbar__100 {
+    background-color: white;
+    width: 100%;
+    height: 1em;
+}
+
+/* UTILITY SET */
+
+.text-align--right {
+    text-align: right;
+}
+
+.text-align--left {
+    text-align: left;
+}

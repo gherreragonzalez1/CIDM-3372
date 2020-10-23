@@ -1,0 +1,315 @@
+/*
+Container
+
+Creates a grid for content with a header, main, and sidebar sections.
+
+Markup:
+<div class="container">
+    <header class="container__header">
+        <h1>Gerardo Herrera Gonzalez</h1>
+        <h4>Student</h4>
+    </header>
+    <main class="container__main__top container__tile">
+        <h3>Profile</h3>
+        <p>I am a self-motivated student, always ready to learn new things, and passionate to be innovative in what I love. I am currently majoring in Computer Information Systems at West Texas A&M University and I expect to obtain my Bachelor of Business in the spring of 2021. Within my major, I have taken courses related to programming, marketing, accounting, finance, and economics. My ultimate goal is to help people through technology and have a way to inspire others while doing so.</p>
+    </main>
+    <aside class="container__sidebar__top container__tile">
+        <h3>Contact Information</h3>
+        <p class="uppercase"><b>E-mail</b></p>
+        <p>gherreragonzalez1@buffs.wtamu.edu</p>
+        <p class="uppercase"><b>Phone Number</b></p>
+        <p>(956) 324-1786</p>
+        <p class="uppercase"><b>Address</b></p> 
+        <p>123 Sample St, Canyon, TX 79015</p>
+    </aside>
+</div>
+
+Styleguide Container
+*/
+.container {
+    display: grid;
+    grid-template-areas: "title  title"
+                         "aside1  main1"
+                         "aside2  main2"
+                         "aside3  main3";
+    grid-template-columns: 1fr 2fr;
+    grid-template-rows: repeat(4, auto);
+    grid-gap: 0;
+    max-width: 1080px;
+    margin: 0 auto;
+}
+
+.container__header {
+    grid-area: title;
+}
+
+.container__main__top {
+    grid-area: main1;
+}
+
+.container__main__center {
+    grid-area: main2;
+}
+
+.container__main__bottom {
+    grid-area: main3;
+}
+
+.container__aside__top {
+    grid-area: aside1;
+}
+
+.container__aside__center {
+    grid-area: aside2;
+}
+
+.container__aside__bottom {
+    grid-area: aside3;
+}
+
+.container__tile {
+    padding: 0;
+}
+
+.container__tile > :first-child {
+    margin-top: 0;
+}
+
+.container__tile * + * {
+    margin-top: 1.5em;
+}
+
+/*
+Subcontainer
+
+Creates a grid with a left and right section within a header. A left section used for the website title, and the right section used for a logo.
+
+Markup:
+<div class="subcontainer">
+    <div class="subcontainer__left subcontainer__tile">
+        <h1>Gerardo Herrera Gonzalez</h1>
+        <h4>Student</h4>
+    </div>
+    <div class="subcontainer__right subcontainer__tile">
+        <img src="https://via.placeholder.com/150" alt="logo" class="subcontainer__logo">
+    </div>
+</div>
+
+Styleguide Subcontainer
+*/
+.subcontainer {
+    display: grid;
+    grid-template-areas: "left-area  right-area";
+    grid-template-columns: 3fr 1fr;
+    grid-template-rows: none;
+}
+
+.subcontainer__left {
+    grid-area: left-area;
+}
+
+.subcontainer__right {
+    grid-area: right-area;
+    display: flex;
+}
+
+.subcontainer__tile {
+    padding: 0;
+}
+
+.subcontainer__logo {
+    width: 7em;
+    height: 7em;
+    margin: auto;
+    display: flex;
+}
+
+/*
+Header
+
+Adds styling to the header section.
+
+Markup:
+<header class="header__styling uppercase">
+    <h1>Gerardo <span class="thin-text">Herrera Gonzalez</span></h1>
+    <h4>Student</h4>
+</header>
+
+Styleguide Header
+*/
+header {
+    list-style-type: none;
+}
+
+.header__styling {
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 1.12em;
+    background-color: #15222f;
+    color: white;
+    padding: 2em 2.5em;
+}
+
+/*
+Main
+
+Adds styling to the main section.
+
+Markup:
+<main class="main__styling">
+    <p class="main__heading">Profile</p>
+    <div class="main__p">
+        <p>I am a self-motivated student, always ready to learn new things, and passionate to be innovative in what I love. I am currently majoring in Computer Information Systems at West Texas A&M University and I expect to obtain my Bachelor of Business in the spring of 2021. Within my major, I have taken courses related to programming, marketing, accounting, finance, and economics. My ultimate goal is to help people through technology and have a way to inspire others while doing so.</p>
+    </div>
+</main>
+
+Styleguide Main
+*/
+.main__styling {
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: .75em;
+    background-color: white;
+    color: black;
+    padding: 3em 3em 1.5em;
+}
+
+.main__heading {
+    text-transform: uppercase;
+    letter-spacing: 3px;
+    font-size: 1.17em;
+}
+
+.main__p {
+    line-height: 2em;
+}
+
+/*
+Sidebar
+
+Adds styling to the sidebar section.
+
+Markup:
+<aside class="sidebar__styling">
+    <p class="sidebar__heading">Contact Information</p>
+    <div class="sidebar__p">
+        <p class="sidebar__p__sub">E-mail</p>
+        <p>gherreragonzalez1@buffs.wtamu.edu</p>
+        <p class="sidebar__p__sub">Phone Number</p>
+        <p>(956) 324-1786</p>
+        <p class="sidebar__p__sub">Address</p> 
+        <p>123 Sample St, Canyon, TX 79015</p>
+    </div>
+</aside>
+
+Styleguide Sidebar
+*/
+.sidebar__styling {
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: .75em;
+    background-color: #F1F3F8;
+    color: black;
+    padding: 3em 3em 1.5em;
+}
+
+.sidebar__heading {
+    text-transform: uppercase;
+    letter-spacing: 3px;
+    font-size: 1.17em;
+}
+
+.sidebar__p {
+    line-height: 2em;
+}
+
+.sidebar__p__sub {
+    text-transform: uppercase;
+    font-weight: bold;
+}
+
+/*
+Thin text
+
+Make text thinner by setting `font-weight` at 100 and applying it.
+
+Markup:
+<p class="thin-text">Thin text</p>
+
+Styleguide Utilities.thin-text
+*/
+.thin-text {
+    font-weight: 100;
+}
+
+/*
+Uppercase
+
+Make text uppercase by applying `text-transform`
+
+Markup:
+<p class="uppercase">Uppercase text</p>
+
+Styleguide Utilities.uppercase
+*/
+.uppercase {
+    text-transform: uppercase;
+    
+}
+
+/*
+Indent
+
+Indent text using `margin-left`
+
+Markup:
+<p class="indent">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vestibulum magna lectus, rhoncus ac mi et, mattis ultrices libero. In hac habitasse platea dictumst. Sed varius imperdiet purus in facilisis. Donec sit amet diam urna.</p>
+
+Styleguide Utilities.indent
+*/
+.indent {
+    margin-left: 2em !important;
+}
+
+/*
+Dates
+
+Applies styling to dates in order to appear to the right, smaller, and in italics.
+
+Markup:
+<p class="dates">01-01-2020</p>
+
+Styleguide Utilities.dates
+*/
+.dates {
+    font-style: italic;
+    font-size: .90em;
+    text-align: right;
+    padding: 0 0 0 57%;
+}
+
+/*
+Line height
+
+Space between lines by applying `line-height`
+
+Markup:
+<p class="line-height">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Proin quis scelerisque urna. Cras facilisis sapien id nisl molestie, ut finibus justo vehicula. Pellentesque elit ex, lacinia eu fermentum ut, auctor nec est. Quisque vulputate lectus et accumsan commodo. Morbi ut est dui. Nunc nec ultricies nunc. Aenean eget egestas dui. Fusce lorem odio, sodales nec est at, dapibus vestibulum dolor. Vestibulum imperdiet, urna at facilisis dapibus, elit augue tempor nisi, eget mollis erat odio nec lorem. Proin dui erat, pharetra non neque eget, ornare lacinia sapien. Curabitur pharetra mattis metus nec auctor.</p>
+
+Styleguide Utilities.line-height
+*/
+.line-height {
+    line-height: 2em;
+}
+
+/*Letter spacing
+
+Space between letters by applying `letter-spacing`
+
+Markup:
+<p class="letter-spacing">Letter spacing</p>
+
+Styleguide Utilities.letter-spacing
+*/
+.letter-spacing {
+    letter-spacing: 3px;
+}
+
+

@@ -1,0 +1,228 @@
+/*
+Container
+
+Creates a grid for content with a header, main, and sidebar sections.
+
+Markup:
+<div class="container">
+    <header class="container__header">
+        <h1>gerardo herrera gonzalez</h1>
+        <p>1234 Main St &#9679; Canyon, TX &#9679; 78045</p>
+        <p><b>CELL</b> (956) 324-1786 &#9679; <b>E-MAIL</b> gherreragonzalez1@buffs.wtamu.edu</p>
+    </header>
+    <aside class="container__sidebar__top container__tile">
+        <p>Profile</p>
+    </aside>
+    <aside class="container__sidebar__middle1 container__tile">
+        <p>Education</p>
+    </aside>
+    <aside class="container__sidebar__middle2 container__tile">
+        <p>Honors</p>
+    </aside>
+    <aside class="container__sidebar__bottom container__tile">
+        <p>Related Coursework</p>
+    </aside>
+    <main class="container__main__top container__tile">
+        <p>I am a self-motivated student, always ready to learn new things, and passionate to be innovative in what I love. I am currently majoring in Computer Information Systems at West Texas A&M University and I expect to obtain my Bachelor of Business in the spring of 2021. Within my major, I have taken courses related to programming, marketing, accounting, finance, and economics. My ultimate goal is to help people through technology and have a way to inspire others while doing so.</p>
+    </main>
+    <main class="container__main__middle1 container__tile">
+        <div>
+            <p><b>West Texas A&M University, Canyon, TX</b></p>
+            <p>Major: B.B.A., Computer Information Systems</p>
+            <p>Expected graduation: May 2021</p>
+            <p>Cumulative GPA: 3.8/4.0</p>
+        </div>
+    </main>
+    <main class="container__main__middle2 container__tile">
+        <p><b>President's List</b>
+        <p>From Fall 2018 to Spring 2020</p>
+        <p>A student is included in the President's List if they get a 4.0 GPA for that semester.</p>
+        <p><b>Beta Gamma Sigma</b>
+        <p>From Fall 2019 to Present</p>
+        <p>Lifetime member of Beta Gamma Sigma. BGS has chapters at only the top 5% business programs, and only the top 10% performing scholars from those programs are invited.</p>
+    </main>
+    <main class="container__main__bottom container__tile">
+        <ul>
+            <li>Business Finance</li>
+            <li>Business Management</li>
+            <li>Database Systems Design</li>
+            <li>Management Information Systems</li>
+            <li>Programming Business Applications</li>
+            <li>Statistics/Economics</li>
+        </ul>
+    </main>
+</div>
+
+Styleguide Container
+*/
+.container {
+    display: grid;
+    grid-template-areas: "header  header"
+                         "aside1  main1"
+                         "aside2  main2"
+                         "aside3  main3"
+                         "aside4  main4";
+    grid-template-columns: 1fr 5fr;
+    grid-template-rows: repeat(5, auto);
+    grid-gap: 0;
+    max-width: 1080px;
+    margin: 0 auto;
+}
+
+.container__header {
+    grid-area: header;
+}
+
+.container__main__top {
+    grid-area: main1;
+}
+
+.container__main__middle1 {
+    grid-area: main2;
+}
+
+.container__main__middle2 {
+    grid-area: main3;
+}
+
+.container__main__bottom {
+    grid-area: main4;
+}
+
+.container__sidebar__top {
+    grid-area: aside1;
+}
+
+.container__sidebar__middle1 {
+    grid-area: aside2;
+}
+
+.container__sidebar__middle2 {
+    grid-area: aside3;
+}
+
+.container__sidebar__bottom {
+    grid-area: aside4;
+}
+
+.container__tile {
+    padding: 0;
+}
+
+/*
+Header
+
+Adds styling to the header.
+
+Markup:
+<header class="container__header header__styling">
+    <span class="header__title">
+        <span class="thin-text">gerardo</span> <span class="header__alt-color">herrera gonzalez</span>
+    </span>
+    <span class="header__subtitle">
+        <p>1234 Main St <span class="header__separator">&#9679;</span> Canyon, TX <span class="header__separator">&#9679;</span> 78045</p>
+        <p><b>CELL</b> (956) 324-1786 <span class="header__separator">&#9679;</span> <b>E-MAIL</b> gherreragonzalez1@buffs.wtamu.edu</p>
+    </span>
+</header>
+
+Styleguide Header
+*/
+header {
+    list-style-type: none;
+}
+
+.header__styling {
+    font-family: Helvetica, Arial, sans-serif;
+    background-color: white;
+    color: black;
+    padding: 2em 2.5em;
+}
+
+.header__title {
+    font-size: 2em;
+    font-weight: bold;
+}
+
+.header__alt-color {
+    color: rgb(87, 131, 193);
+}
+
+.header__subtitle {
+    font-size: .7em;
+    color: gray;
+}
+
+.header__separator {
+    color: rgb(87, 131, 193);
+}
+
+/*
+Main
+
+Adds styling to the main section.
+
+Markup:
+<main class="main__styling">
+    <p>I am a self-motivated student, always ready to learn new things, and passionate to be innovative in what I love. I am currently majoring in Computer Information Systems at West Texas A&M University and I expect to obtain my Bachelor of Business in the spring of 2021. Within my major, I have taken courses related to programming, marketing, accounting, finance, and economics. My ultimate goal is to help people through technology and have a way to inspire others while doing so.</p>
+</main>
+
+Styleguide Main
+*/
+.main__styling {
+    font-family: Helvetica, Arial, sans-serif;
+    background-color: white;
+    padding: .5em 1.5em;
+    border-top: .13em dotted #ccc;
+}
+
+/*
+Sidebar
+
+Adds styling to the sidebar section.
+
+Markup:
+<aside class="sidebar__styling">
+    <p class="sidebar__heading">Profile</p>
+</aside>
+
+Styleguide Sidebar
+*/
+.sidebar__styling {
+    font-family: Helvetica, Arial, sans-serif;
+    background-color: white;
+    padding: .5em 1.5em;
+    border-top: .13em dotted #ccc;
+}
+
+.sidebar__heading {
+    color: rgb(87, 131, 193);
+    text-transform: uppercase;
+}
+
+/*
+Indent
+
+Adds indentation to text by using `indent`
+
+Markup:
+<p class="indent">Orem ipsum dolor sit amet, consectetur adipiscing elit. Vestibulum sed massa augue. Fusce scelerisque, magna nec scelerisque pellentesque, tellus diam aliquet eros, at suscipit augue mauris a neque.</p>
+
+Styleguide Utilities.indent
+*/
+.indent {
+    margin-left: 1.5em !important;
+}
+
+/*
+Thin text
+
+Adds thinness to text by using `thin-text`
+
+Markup:
+<p class="thin-text">Orem ipsum dolor sit amet, consectetur adipiscing elit. Vestibulum sed massa augue. Fusce scelerisque, magna nec scelerisque pellentesque, tellus diam aliquet eros, at suscipit augue mauris a neque.</p>
+
+Styleguide Utilities.thin-text
+*/
+.thin-text {
+    font-weight: 100 !important;
+}

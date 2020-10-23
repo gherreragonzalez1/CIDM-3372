@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html>
+<!-- Name: Gerardo Herrera Gonzalez
+CIDM3372
+Assignment 5 -->
+<head>
+  <!-- CSS Begins -->
+  <style>
+    .item1 {
+      grid-area: header;
+    }
+
+    .item2 {
+      grid-area: menu;
+    }
+
+    .item3 {
+      grid-area: main;
+    }
+
+    .item4 {
+      grid-area: right;
+    }
+
+    .item5 {
+      grid-area: footer;
+    }
+
+    .grid-container {
+      display: grid;
+      grid-template-areas:
+        'header header header header header header'
+        'menu main main main right right'
+        'menu footer footer footer footer footer';
+      grid-gap: 10px;
+      background-color: #2196F3;
+      padding: 10px;
+    }
+
+    .grid-container > div {
+      background-color: rgba(255, 255, 255, 0.8);
+      text-align: center;
+      padding: 20px 0;
+      font-size: 30px;
+    }
+
+    .flex-container {
+      display: flex;
+      background-color: DodgerBlue;
+    }
+
+    .flex-container>div {
+      background-color: #f1f1f1;
+      margin: 10px;
+      padding: 20px;
+      font-size: 30px;
+    }
+  </style>
+
+  <!-- Change color script -->
+  <script>
+    function changeColor() {
+      for (const elem of document.querySelectorAll('.grid-container > div')) {
+        var r = Math.round(Math.random() * 255);
+        var g = Math.round(Math.random() * 255);
+        var b = Math.round(Math.random() * 255);
+        elem.style.backgroundColor = "rgb(" + r + "," + g + "," + b + ", 0.8)";
+      }
+
+    }
+    function intervals() {
+      var myTimer = setInterval(changeColor, 1000);
+      var running = true;
+    }
+  </script>
+  <!-- Time script -->
+  <script>
+    function startTime() {
+      var today = new Date();
+      document.getElementById('txt').innerHTML = today.toString();
+      var t = setTimeout(startTime, 500);
+    }
+
+    startTime();
+  </script>
+</head>
+
+<body onload="startTime()">
+
+  <h1>Grid Layout</h1>
+
+  <p>This grid layout contains six columns and three rows:</p>
+
+  <div class="flex-container">
+    <button onclick="intervals()">GO!</button>
+    <p id="txt"></p>
+  </div>
+
+  <div class="grid-container">
+    <div class="item1">Header</div>
+    <div class="item2">Menu</div>
+    <div class="item3">Main</div>
+    <div class="item4">Right</div>
+    <div class="item5">Footer</div>
+  </div>
+
+</body>
+
+</html>

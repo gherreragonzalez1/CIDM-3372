@@ -1,0 +1,332 @@
+/*
+Container
+
+Creates a grid for content with a main, and sidebar sections.
+
+Markup:
+<div class="container">
+    <main class="container__main__top container__tile">
+        <p>I am a self-motivated student, always ready to learn new things, and passionate to be innovative in what I love. I am currently majoring in Computer Information Systems at West Texas A&M University and I expect to obtain my Bachelor of Business in the spring of 2021. Within my major, I have taken courses related to programming, marketing, accounting, finance, and economics. My ultimate goal is to help people through technology and have a way to inspire others while doing so.</p>
+    </main>
+    <aside class="container__aside__top container__tile">
+        <h3>Gerardo Herrera</h3>
+        <p>Student</p>
+    </aside>
+    <aside class="container__aside__middle1 container__tile">
+        <h3>Personal Info</h3>
+        <p><b>E-mail</b></p>
+        <p>gherreragonzalez1@buffs.wtamu.edu</p>
+        <p><b>Phone Number</b></p>
+        <p>(956) 324-1786</p>
+        <p><b>Address</b></p>
+        <p>123 Sample St, Canyon, TX 79015</p>
+        <p><b>LinkedIn</b></p>
+        <p>/gerardo-herrera-gonzalez</p>
+    </aside>
+</div>
+
+Styleguide Container
+*/
+.container {
+    display: grid;
+    grid-template-areas: "aside1  main1"
+                         "aside2  main2"
+                         "aside3  main3"
+                         "aside4  main4";
+    grid-template-columns: 2fr;
+    grid-template-rows: repeat(4, auto);
+    grid-gap: 0;
+    max-width: 1080px;
+    margin: 0 auto;
+    
+}
+
+.container__main__top {
+    grid-area: main1;
+}
+
+.container__main__middle1 {
+    grid-area: main2;
+}
+
+.container__main__middle2 {
+    grid-area: main3;
+}
+
+.container__main__bottom {
+    grid-area: main4;
+}
+
+.container__aside__top {
+    grid-area: aside1;
+}
+
+.container__aside__middle1 {
+    grid-area: aside2;
+}
+
+.container__aside__middle2 {
+    grid-area: aside3;
+}
+
+.container__aside__bottom {
+    grid-area: aside4;
+}
+
+.container__tile {
+    padding: 0;
+}
+
+.container__tile > :first-child {
+    margin-top: 0;
+}
+
+/*
+Subcontainer
+
+Creates a grid with a left and right section. 
+
+Markup:
+<div class="subcontainer">
+    <div class="subcontainer__aside__top subcontainer__tile">
+        <p>2018-08 </br>
+            - 2020-05</p>
+    </div>
+    <div class="subcontainer__main__top subcontainer__tile">
+        <p><b>President's List</b>
+        <p>A student is included in the President's List if they get a 4.0 GPA for that semester.</p>
+    </div>
+    <div class="subcontainer__aside__bottom subcontainer__tile">
+        <p>2019-10 </br>
+            - Present</p>
+    </div>
+    <div class="subcontainer__main__bottom subcontainer__tile">
+        <p><b>Beta Gamma Sigma</b>
+        <p>Lifetime member of Beta Gamma Sigma. BGS has chapters at only the top 5% business programs, and
+            only the top 10% performing scholars from those programs are invited.</p>
+    </div>
+</div>
+
+Styleguide Subcontainer
+*/
+.subcontainer {
+    display: grid;
+    grid-template-areas: "subaside1  submain1"
+                         "subaside2  submain2";
+    grid-template-columns: .5fr 4fr;
+    grid-template-rows: repeat(2, auto);
+    padding: 0 auto;
+    grid-gap: 2em;
+}
+
+.subcontainer__main__top {
+    grid-area: submain1;
+}
+
+.subcontainer__main__bottom {
+    grid-area: submain2;
+}
+
+.subcontainer__aside__top {
+    grid-area: subaside1;
+}
+
+.subcontainer__aside__bottom {
+    grid-area: subaside2;
+}
+
+.subcontainer__tile {
+    padding: .1em;
+}
+
+/*
+Main
+
+Adds styling to the main section.
+
+Markup:
+<main class="main__styling">
+    <p>I am a self-motivated student, always ready to learn new things, and passionate to be innovative in what I love. I am currently majoring in Computer Information Systems at West Texas A&M University and I expect to obtain my Bachelor of Business in the spring of 2021. Within my major, I have taken courses related to programming, marketing, accounting, finance, and economics. My ultimate goal is to help people through technology and have a way to inspire others while doing so.</p>
+</main>
+
+Styleguide Main
+*/
+.main__styling {
+    font-family: Helvetica, Arial, sans-serif;
+    font-size: .75em;
+    background-color: white;
+    padding: 1em;
+    line-height: 2em;
+}
+
+.main__heading {
+    padding: .3em 0;
+    border-top: 1px solid #ccc;
+    border-bottom: 1px solid #ccc;
+    font-size: 1.3em;
+    color: rgb(12, 43, 80);
+}
+
+.main__subheading {
+    font-size: 1.1em;
+}
+
+/*
+Sidebar
+
+Adds styling to the sidebar section.
+
+Markup:
+<aside class="sidebar__styling">
+    <span class="sidebar__header__title">Gerardo Herrera</span>
+    <p class="sidebar__header__subtitle">Student</p>
+</aside>
+<aside class="sidebar__styling">
+    <h3 class="sidebar__heading">Personal Info</h3>
+    <div class="sidebar__pad">
+        <p><b>E-mail</b></p>
+        <p>gherreragonzalez1@buffs.wtamu.edu</p>
+        <p><b>Phone Number</b></p>
+        <p>(956) 324-1786</p>
+        <p><b>Address</b></p>
+        <p>123 Sample St, Canyon, TX 79015</p>
+        <p><b>LinkedIn</b></p>
+        <p>/gerardo-herrera-gonzalez</p>
+    </div>
+</aside>
+
+Styleguide Sidebar
+*/
+.sidebar__styling {
+    font-family: Helvetica, Arial, sans-serif;
+    font-size: .75em;
+    background-color: #13396C;
+    color: white;
+    padding: 1em;
+}
+
+.sidebar__header__title {
+    font-size: 2em;
+    font-weight: bold;
+}
+
+.sidebar__header__subtitle {
+    font-size: 1.3em;
+    line-height: 0;
+}
+
+.sidebar__heading {
+    background-color: rgb(12, 43, 80);
+    padding: .3em .5em;
+    margin: -.65em;
+    font-size: 1.5em;   
+}
+
+.sidebar__pad {
+    padding: 1em 0 0 0;
+}
+
+/*
+Progress bar
+
+Bar used to demonstrate progress.
+
+Markup:
+<p>Communication skill</p>
+<div class="progressbar__styling">
+    <div class="progressbar__80"></div>
+</div>
+
+Styleguide Progressbar
+*/
+.progressbar__styling {
+    background-color: black;
+}
+  
+.progressbar__10 {
+    background-color: lightblue;
+    width: 10%;
+    height: 1em;
+}
+
+.progressbar__20 {
+    background-color: lightblue;
+    width: 20%;
+    height: 1em;
+}
+
+.progressbar__30 {
+    background-color: lightblue;
+    width: 30%;
+    height: 1em;
+}
+
+.progressbar__40 {
+    background-color: lightblue;
+    width: 40%;
+    height: 1em;
+}
+
+.progressbar__50 {
+    background-color: lightblue;
+    width: 50%;
+    height: 1em;
+}
+
+.progressbar__60 {
+    background-color: lightblue;
+    width: 60%;
+    height: 1em;
+}
+
+.progressbar__70 {
+    background-color: lightblue;
+    width: 70%;
+    height: 1em;
+}
+
+.progressbar__80 {
+    background-color: lightblue;
+    width: 80%;
+    height: 1em;
+}
+
+.progressbar__90 {
+    background-color: lightblue;
+    width: 90%;
+    height: 1em;
+}
+
+.progressbar__100 {
+    background-color: lightblue;
+    width: 100%;
+    height: 1em;
+}
+
+/*
+Text align right
+
+Aligns text to the right.
+
+Markup:
+<p class="text-align--right">Text aligned to the right.</p>
+
+Styleguide Utilities.text-align--right
+*/
+.text-align--right {
+    text-align: right;
+}
+
+/*
+Text align left
+
+Aligns text to the left.
+
+Markup:
+<p class="text-align--left">Text aligned to the left.</p>
+
+Styleguide Utilities.text-align--left
+*/
+.text-align--left {
+    text-align: left;
+}
