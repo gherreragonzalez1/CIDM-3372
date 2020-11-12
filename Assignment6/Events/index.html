@@ -373,19 +373,16 @@
             if (element.value.match(/\d/) == null) {
                 messageSpanElement = document.querySelector('#messages');
                 messageSpanElement.textContent = "WARNING - Your password must have a number."
-                document.getElementById(element.id).focus();
                 return false;
             }
             if (element.value.match(/[a-z]/) == null) {
                 messageSpanElement = document.querySelector('#messages');
                 messageSpanElement.textContent = "WARNING - Your password must have an lower case letter."
-                document.getElementById(element.id).focus();
                 return false;
             }
             if (element.value.match(/[A-Z]/) == null) {
                 messageSpanElement = document.querySelector('#messages');
                 messageSpanElement.textContent = "WARNING - Your password must have an upper case letter."
-                document.getElementById(element.id).focus();
                 return false;
             }
             if (element.value.length < 8) {
