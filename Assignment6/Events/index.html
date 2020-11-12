@@ -210,10 +210,10 @@
             suggestions: 0-25: Not awesome; 25-50: Kinda awesome; 51-75: Awesome; 76-100: Totally Awesome -->
             <output class="awesome-output"></output>
         </div>
-        <input type="button" value="submit" onclick="printForm();">
     </form>
     <div>
         <p id="show-results">Show results here on form submit</p>
+        <input type="button" value="submit" onclick="printForm();">
     </div>    
     <script>
 
@@ -339,7 +339,7 @@
         function printForm()
         {
             var text = "";
-            // Clear div
+            // clear div
             document.querySelector('#show-results').innerHTML="";
             text = text + 'Name: ' + document.forms['personForm']['name'].value + '<br/>';
             text = text + 'Password: ' + document.forms['personForm']['pwd'].value + '<br/>';
@@ -350,12 +350,12 @@
             document.querySelector('#show-results').innerHTML=text;
         }
 
-        // changeColor function
+        // changeColor function - changes background color of the color div
         function changeColor(color) {
             document.querySelector('#color-background').style.backgroundColor=color;
         }
 
-        // Name restriction
+        // Name validation function
         function limitChars(element) {
             var max_chars = element.maxLength;
             
@@ -368,7 +368,7 @@
             
         }
 
-        // Password restriction
+        // Password validation function
         function validatePassword(element) {
             if (element.value.match(/\d/) == null) {
                 messageSpanElement = document.querySelector('#messages');
@@ -399,7 +399,7 @@
             }
         }   
 
-        // Email restriction
+        // Email validation function
         function validateEmail(element) {
             var emailFilter = /\S+@\S+\.\S+/;
             if (!emailFilter.test(element.value)) {
@@ -413,7 +413,7 @@
             }
         }
 
-        // Phone number restriction
+        // Phone number validation function
         function validatePhone(element) {
             var phoneFilter = /^(\()?\d{3}(\))?(-|\s)?\d{3}(-|\s)\d{4}$/; 
             if (!phoneFilter.test(element.value)) {
@@ -426,8 +426,9 @@
                 return true;
             }
         }
+
+        // URL validation function
         function validateUrl(element) {
-            //
             var urlFilter = /^(https:\/\/)[a-z0-9]+([\-\.]{1}[a-z0-9]+)*\.[a-z]{2,5}(:[0-9]{1,5})?(\/.*)?$/; 
             if (!urlFilter.test(element.value)) {
                 messageSpanElement = document.querySelector('#messages');
