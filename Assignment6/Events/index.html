@@ -5,6 +5,9 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Event Handling and DOM Manipulation with Forms</title>
 
+    <!-- Name: Gerardo Herrera Gonzalez -->
+    <!-- CIDM-3372 -->
+
     <!-- This is pretty cool, we can use Google Fonts (https://fonts.google.com/) to bring in a variety of
     attractive and useful fonts into our application. -->
     <link href='https://fonts.googleapis.com/css?family=Roboto' rel='stylesheet'>
@@ -64,9 +67,9 @@
             border: 2px dashed red;
         }
 
-        /* input:invalid:required {
+        input:invalid:required {
             background-image: linear-gradient(to right, grey, lightgrey);
-        } */
+        }
 
         input:valid {
             border: 2px solid black;
@@ -335,9 +338,8 @@
         // printForm function
         function printForm()
         {
-            //Hay que validar que los campos estén llenos.
             var text = "";
-            //clear div
+            // Clear div
             document.querySelector('#show-results').innerHTML="";
             text = text + 'Name: ' + document.forms['personForm']['name'].value + '<br/>';
             text = text + 'Password: ' + document.forms['personForm']['pwd'].value + '<br/>';
@@ -384,11 +386,6 @@
                 messageSpanElement = document.querySelector('#messages');
                 messageSpanElement.textContent = "WARNING - Your password must have an upper case letter."
                 document.getElementById(element.id).focus();
-                return false;
-            }
-            if (element.value.match(/['~!@#$%&*_+=]/) == null) {
-                messageSpanElement = document.querySelector('#messages');
-                messageSpanElement.textContent = "WARNING - Your password must have a special character i.e.(!@#$%&*)."
                 return false;
             }
             if (element.value.length < 8) {
