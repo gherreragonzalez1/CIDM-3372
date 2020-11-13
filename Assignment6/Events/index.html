@@ -112,16 +112,16 @@
             <input class="form-input-text" 
                    id="name"                   
                    name="name"
-                   maxlength="50"
                    onblur="formInputBlurred(this)"
                    onfocus="console.log(`Entered: ${this.name}`)"
                    oninput="replicateTyping()"
                    onmouseover="mouseEnterMessages(this)"
-                   onmouseout="mouseOutMessage(this)"    
+                   onmouseout="mouseOutMessage(this)"   
+                   onkeyup="limitChars(this)"
                    type="text" 
                    required
                    autofocus>
-            <!-- <br><span id="name-error"></span> -->
+            <br><span id="name-error"></span>
         </div>
         <div class="rcorners">
             <!-- TODO: Use a javascript event handler to ensure that passwords are at least 8 characters in length
@@ -145,7 +145,8 @@
             <input class="form-input-text" 
                    onmouseover="mouseEnterMessages(this)"
                    onmouseout="mouseOutMessage(this)"
-                   onblur="formInputBlurred(this)" 
+                   onblur="formInputBlurred(this)"
+                   onkeyup="validateEmail(this)"   
                    type="email" 
                    name="email" 
                    id="email"
@@ -160,6 +161,7 @@
                    onmouseover="mouseEnterMessages(this)"
                    onmouseout="mouseOutMessage(this)"
                    onblur="formInputBlurred(this)" 
+                   onkeyup="validatePhone(this)"  
                    type="tel" 
                    name="tel" 
                    id="tel"
@@ -177,6 +179,7 @@
                    name="color" 
                    id="color"
                    onchange="changeColor(this.value)"
+                   disabled="true"
                    required>
         </div>  
         <div class="rcorners">
@@ -185,7 +188,8 @@
             <input class="form-input-text"
                    onmouseover="mouseEnterMessages(this)"
                    onmouseout="mouseOutMessage(this)"
-                   onblur="formInputBlurred(this)"            
+                   onblur="formInputBlurred(this)"    
+                   onkeyup="validateUrl(this)"           
                    type="url" 
                    id="url" 
                    name="url"
@@ -213,7 +217,7 @@
     </form>
     <div>
         <p id="show-results">Show results here on form submit</p>
-        <input type="button" value="submit" onclick="printForm()">
+        <input type="submit" value="submit" onclick="printForm()">
     </div>
     <script>
 
@@ -300,94 +304,87 @@
 
             // notice how we can use the forms collection in the document 
             // to access the values in the form fields.  
-            let nameText = document.forms['personForm'][evt.name].value;
-            if (nameText == "") {
+            let textField = document.forms['personForm'][evt.name].value;
+            // if field is empty, focus on it
+            if (textField == "") {
                 document.forms['personForm'][evt.name].focus();
             }
             if (evt.name == 'name') {
-                limitChars(evt);
-                nameText = nameText.toUpperCase();
-                document.forms['personForm']['name'].value = nameText;
-                console.log(nameText);
+                textField = textField.toUpperCase();
+                document.forms['personForm']['name'].value = textField;
+                console.log(textField);
             }
             if (evt.name == 'pwd') {
+                // if password is not validated, then focus on 'pwd'
                 if(!validatePassword(evt)){
-                    document.forms['personForm'][evt.name].focus();
-                };
+                    document.forms['personForm']['pwd'].focus();
+                }
             }
             if (evt.name == 'email') {
-                if(!validateEmail(evt)){
-                    document.forms['personForm'][evt.name].focus();
-                };
+                // if email is not validated, then focus on 'pwd'
+                if(!validateEmail(evt)) {
+                    document.forms['personForm']['email'].focus();
+                }
             }
             if (evt.name == 'tel') {
+                // if phone is not validated, then focus on 'pwd'
                 if(!validatePhone(evt)){
-                    document.forms['personForm'][evt.name].focus();
-                };
+                    document.forms['personForm']['color'].disabled=true;
+                    document.forms['personForm']['tel'].focus();
+                } else {
+                    document.forms['personForm']['color'].disabled=false; 
+                }
             }
             if (evt.name == 'url') {
+                // if url is not validated, then focus on 'pwd'
                 if(!validateUrl(evt)){
                     document.forms['personForm']['awesome'].disabled=true;
-                    document.forms['personForm'][evt.name].focus();
+                    document.forms['personForm']['url'].focus();
                 } else {
                     document.forms['personForm']['awesome'].disabled=false; 
-                };
+                }
             }
         }
 
-        // printForm function
-        function printForm()
-        {
-            var text = "";
-            // clear div
-            document.querySelector('#show-results').innerHTML="";
-            text = text + 'Name: ' + document.forms['personForm']['name'].value + '<br/>';
-            text = text + 'Password: ' + document.forms['personForm']['pwd'].value + '<br/>';
-            text = text + 'Email: ' + document.forms['personForm']['email'].value + '<br/>';
-            text = text + 'Phone number: ' + document.forms['personForm']['tel'].value + '<br/>';
-            text = text + 'Color: ' + document.forms['personForm']['color'].value + '<br/>';
-            text = text + 'Awesomeness: ' + document.forms['personForm']['awesome'].value + '<br/>';
-            document.querySelector('#show-results').innerHTML=text;
-        }
-
-        // changeColor function - changes background color of the color div
+        // changeColor function - changes background color of the 'color' div
         function changeColor(color) {
             document.querySelector('#color-background').style.backgroundColor=color;
+            return true;
         }
 
         // Name validation function
         function limitChars(element) {
-            var max_chars = element.maxLength;
+            var max_chars = 50;
             
             if (element.value.length > max_chars) {
                 element.value = element.value.substr(0, max_chars);
                 messageSpanElement = document.querySelector('#messages');
                 messageSpanElement.textContent = "WARNING - Name can only be 50 characters or less."
-               
+                return false;
             }
-            
+            return true;
         }
 
         // Password validation function
         function validatePassword(element) {
             if (element.value.match(/\d/) == null) {
                 messageSpanElement = document.querySelector('#messages');
-                messageSpanElement.textContent = "WARNING - Your password must have a number."
+                messageSpanElement.textContent = "WARNING - Your password must have a number..."
                 return false;
             }
             if (element.value.match(/[a-z]/) == null) {
                 messageSpanElement = document.querySelector('#messages');
-                messageSpanElement.textContent = "WARNING - Your password must have an lower case letter."
+                messageSpanElement.textContent = "WARNING - Your password must have an lower case letter..."
                 return false;
             }
             if (element.value.match(/[A-Z]/) == null) {
                 messageSpanElement = document.querySelector('#messages');
-                messageSpanElement.textContent = "WARNING - Your password must have an upper case letter."
+                messageSpanElement.textContent = "WARNING - Your password must have an upper case letter..."
                 return false;
             }
             if (element.value.length < 8) {
                 messageSpanElement = document.querySelector('#messages');
-                messageSpanElement.textContent = "WARNING - Your password must have 8 chars minimum."
+                messageSpanElement.textContent = "WARNING - Your password must have 8 chars minimum..."
                 return false;
             } else {
                 messageSpanElement = document.querySelector('#messages');
@@ -398,30 +395,28 @@
 
         // Email validation function
         function validateEmail(element) {
-            var emailFilter = /\S+@\S+\.\S+/;
-            if (!emailFilter.test(element.value)) {
+            var emailFilter = /^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}$/;
+            if(!emailFilter.test(element.value)) {
                 messageSpanElement = document.querySelector('#messages');
-                messageSpanElement.textContent = "Email must be valid..."
+                messageSpanElement.textContent = "WARNING - Email must have a valid format e.g. mail@domain.com"
                 return false;
-            } else { 
-                messageSpanElement = document.querySelector('#messages');
-                messageSpanElement.textContent = "Email is valid, you're good to go."
-                return true;
             }
+            messageSpanElement = document.querySelector('#messages');
+            messageSpanElement.textContent = "Email is in the correct format!"
+            return true;
         }
 
         // Phone number validation function
         function validatePhone(element) {
-            var phoneFilter = /^(\()?\d{3}(\))?(-|\s)?\d{3}(-|\s)\d{4}$/; 
+            var phoneFilter = /^\(\d{3}\) \d{3}-\d{4}$/; 
             if (!phoneFilter.test(element.value)) {
                 messageSpanElement = document.querySelector('#messages');
-                messageSpanElement.textContent = "Phone number must be in US format (123) 456-7890"
+                messageSpanElement.textContent = "WARNING - Phone number must be in US format (123) 456-7890"
                 return false;
-            } else {
-                messageSpanElement = document.querySelector('#messages');
-                messageSpanElement.textContent = "Phone number is in the correct format."
-                return true;
             }
+            messageSpanElement = document.querySelector('#messages');
+            messageSpanElement.textContent = "Phone number is in the correct format!"
+            return true;
         }
 
         // URL validation function
@@ -429,15 +424,66 @@
             var urlFilter = /^(https:\/\/)[a-z0-9]+([\-\.]{1}[a-z0-9]+)*\.[a-z]{2,5}(:[0-9]{1,5})?(\/.*)?$/; 
             if (!urlFilter.test(element.value)) {
                 messageSpanElement = document.querySelector('#messages');
-                messageSpanElement.textContent = "URL must start with https://"
+                messageSpanElement.textContent = "WARNING - URL must start with https://"
                 return false;
-            } else {
-                messageSpanElement = document.querySelector('#messages');
-                messageSpanElement.textContent = "URL is in the correct format."
-                return true;
             }
+            messageSpanElement = document.querySelector('#messages');
+            messageSpanElement.textContent = "URL starts with https:// (Secure Connection)"
+            return true;
         }
 
+        // printForm function
+        function printForm(evt)
+        {
+            // Name preventDefault if null
+            if(document.forms['personForm']['name'].value == "") {
+                evt.preventDefault();
+            }
+            // Password preventDefault if null or text doesn't match format
+            if(document.forms['personForm']['pwd'].value == "") {
+                evt.preventDefault();
+            }
+            var pwdFilter = /^(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,255}$/
+            if (!pwdFilter.test(document.forms['personForm']['pwd'].value)) {
+                evt.preventDefault();
+            }
+            // Email preventDefault if null or text doesn't match format
+            if(document.forms['personForm']['email'].value == "") {
+                evt.preventDefault();
+            }
+            var emailFilter = /^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}$/;
+            if (!emailFilter.test(document.forms['personForm']['email'].value)) {
+                evt.preventDefault();
+            }
+            // Phone Number preventDefault if null or text doesn't match format
+            if(document.forms['personForm']['tel'].value == "") {
+                evt.preventDefault();
+            }
+            var phoneFilter = /^\(\d{3}\) \d{3}-\d{4}$/;
+            if (!phoneFilter.test(document.forms['personForm']['tel'].value)) {
+                evt.preventDefault();
+            }
+            // URL preventDefault if null or text doesn't match format
+            if(document.forms['personForm']['url'].value == "") {
+                evt.preventDefault();
+            }
+            var urlFilter = /^(https:\/\/)[a-z0-9]+([\-\.]{1}[a-z0-9]+)*\.[a-z]{2,5}(:[0-9]{1,5})?(\/.*)?$/; 
+            if (!urlFilter.test(document.forms['personForm']['url'].value)) {
+                evt.preventDefault();
+            }
+
+            // If everything looks good -> print form
+            var text = "";
+            document.querySelector('#show-results').innerHTML="";
+            text = text + 'Name: ' + document.forms['personForm']['name'].value + '<br/>';
+            text = text + 'Password: ' + document.forms['personForm']['pwd'].value + '<br/>';
+            text = text + 'Email: ' + document.forms['personForm']['email'].value + '<br/>';
+            text = text + 'Phone number: ' + document.forms['personForm']['tel'].value + '<br/>';
+            text = text + 'Color: ' + document.forms['personForm']['color'].value + '<br/>';
+            text = text + 'URL: ' + document.forms['personForm']['url'].value + '<br/>';
+            text = text + 'Awesomeness: ' + document.forms['personForm']['awesome'].value + '<br/>';
+            document.querySelector('#show-results').innerHTML=text;
+        }
     </script>            
 </body>
 </html>
