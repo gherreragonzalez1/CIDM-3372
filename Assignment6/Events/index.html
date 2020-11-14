@@ -117,6 +117,7 @@
                    oninput="replicateTyping()"
                    onmouseover="mouseEnterMessages(this)"
                    onmouseout="mouseOutMessage(this)"   
+                   maxlength="50"
                    onkeyup="limitChars(this)"
                    type="text" 
                    required
@@ -327,7 +328,7 @@
                 }
             }
             if (evt.name == 'tel') {
-                // if phone is not validated, then focus on 'pwd'
+                // if phone is not validated, then focus on 'pwd' and disable 'color'
                 if(!validatePhone(evt)){
                     document.forms['personForm']['color'].disabled=true;
                     document.forms['personForm']['tel'].focus();
@@ -336,7 +337,7 @@
                 }
             }
             if (evt.name == 'url') {
-                // if url is not validated, then focus on 'pwd'
+                // if url is not validated, then focus on 'pwd' and disable 'awesome'
                 if(!validateUrl(evt)){
                     document.forms['personForm']['awesome'].disabled=true;
                     document.forms['personForm']['url'].focus();
