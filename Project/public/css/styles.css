@@ -1,0 +1,109 @@
+body {
+    margin: 0 auto;
+    padding: 2em;
+}
+
+#mapid { 
+    height: 480px;
+}
+
+header,
+aside,
+footer {
+    background-color: rgb(211, 211, 211);
+    padding: 1em;
+    border-radius: .5em;
+}
+
+
+header, footer {
+    grid-column: 1 / 4;
+    grid-auto-flow: column;
+}
+
+.grid-container {    
+    display: grid;
+    grid-template-columns: 1fr 2fr 1fr;
+    grid-template-rows: 100px auto auto;
+    grid-template-areas:
+        'header'
+        'main'
+        'footer';
+    grid-gap: 0.5em 0.5em;
+}
+
+.grid-container__header {
+    grid-area: header;
+    padding: .5em;
+    background-color: transparent;
+}
+
+.grid-container__main {
+    grid-area: main;
+    background-color: transparent;
+}
+
+.grid-container__footer {
+    grid-area: footer;
+    background-color: transparent;
+}
+
+.grid-container > #mapid {
+    display: flex;
+    flex: 2 1 auto;
+    flex-direction: column;
+    flex-grow: inherit;
+    justify-content: stretch;
+}
+
+.grid-container > aside {
+    align-items: stretch;    
+    display: flex;
+    flex: 2 1 auto;
+    flex-direction: column;
+    justify-content: start;    
+}
+
+.grid-container > header, footer {
+    display: flex;
+    flex: 2 1 auto;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-evenly;
+}
+
+.flex-container {
+    align-items: center;    
+    display: flex;
+    height: 150px;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.weather-element {
+    color: darkslategrey;
+}
+
+.lifr-flight-category {
+    color: magenta;
+    background-color: darkslategray;
+}
+
+.ifr-flight-category {
+    color: red;
+    background-color: darkslategray;
+}
+
+.mvfr-flight-category {
+    color: blue;
+    background-color: cornsilk;
+}
+
+.vfr-flight-category {
+    color: greenyellow;
+    background-color: darkslategray;
+}
+
+.center {
+    text-align: center;
+}

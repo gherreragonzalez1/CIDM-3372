@@ -1,0 +1,272 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Final Project Example</title>
+
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link href="https://fonts.googleapis.com/css2?family=Work+Sans&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Oxygen&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;700&display=swap" rel="stylesheet">
+
+    <link rel="stylesheet" href="css/styles.css">
+
+    <style>
+        body {
+            font-family: "Montserrat", Arial, sans-serif;
+            color: white;
+        }
+
+        a:link {
+            color: white;
+            text-decoration: none;
+        }
+
+        a:visited {
+            color: white;
+        }
+
+        a:hover {
+            color: rgb(127, 152, 206);
+        }
+
+        .bg {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: url('img/clouds.jpg');
+            background-position: center center;
+            background-origin: content-box;
+            background-size: cover;
+            background-attachment: fixed;
+            z-index: -2;
+        }
+
+        .text-border {
+            text-shadow:
+            -1px -1px 0 #000,  
+                1px -1px 0 #000,
+                -1px 1px 0 #000,
+                1px 1px 0 #000;
+        }
+
+        .lightning {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: url('img/clouds.jpg');
+            background-position: center center;
+            background-origin: content-box;
+            background-size: cover;
+            background-attachment: fixed;
+            -webkit-filter: brightness(3);
+            filter: brightness(3);
+            -o-filter: brightness(3);
+            -moz-filter: brightness(3);
+            z-index: -1;
+        }
+
+        .flashit {
+            -webkit-animation: flash ease-out 7s infinite;
+            -moz-animation: flash ease-out 7s infinite;
+            animation: flash ease-out 7s infinite;
+            animation-delay: 2s;
+        }
+
+        @-webkit-keyframes flash {
+            from { opacity: 0; } 
+            92% { opacity: 0; }
+            93% { opacity: 0.6; }
+            94% { opacity: 0.2; }
+            96% { opacity: 0.9; } 
+            to { opacity: 0; }
+        }
+
+        @keyframes flash {
+            from { opacity: 0; } 
+            92% { opacity: 0; }
+            93% { opacity: 0.6; }
+            94% { opacity: 0.2; }
+            96% { opacity: 1; } 
+            to { opacity: 0; }
+        }
+
+        .linear-wipe {
+            background: linear-gradient(-45deg, rgb(255, 255, 255) 20%, rgb(176, 151, 235) 40%, rgb(90, 63, 211) 60%, rgb(255, 255, 255) 80%);
+            background-size: 200% auto;
+            color: #000;
+            background-clip: text;
+            text-fill-color: transparent;
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            animation: shine 8s linear infinite;
+        }
+
+        @keyframes shine {
+            to {
+                background-position: 200% center;
+            }
+        }
+
+        /* Menu */
+        #menuToggle
+        {
+            display: block;
+            position: relative;
+            top: 0;
+            left: 0;
+            z-index: 1;
+            -webkit-user-select: none;
+            user-select: none;
+        }
+
+        #menuToggle a
+        {
+            text-decoration: none;
+            color: #000000;
+            transition: color 0.3s ease;
+        }
+
+        #menuToggle a:hover
+        {
+            color: rgb(61, 109, 148);
+        }
+
+
+        #menuToggle input
+        {
+            display: block;
+            width: 40px;
+            height: 32px;
+            position: absolute;
+            top: -7px;
+            left: -5px;  
+            cursor: pointer;
+            opacity: 0; /* hide this */
+            z-index: 2; /* and place it over the hamburger */
+            -webkit-touch-callout: none;
+        }
+
+        #menuToggle span
+        {
+            display: block;
+            width: 33px;
+            height: 4px;
+            margin-bottom: 5px;
+            position: relative;
+            background: #cdcdcd;
+            border-radius: 3px;
+            z-index: 1;   
+            transform-origin: 4px 0px;     
+            transition: transform 0.5s cubic-bezier(0.77,0.2,0.05,1.0),
+                        background 0.5s cubic-bezier(0.77,0.2,0.05,1.0),
+                        opacity 0.55s ease;
+        }
+
+        #menuToggle span:first-child
+        {
+            transform-origin: 0% 0%;
+        }
+
+        #menuToggle span:nth-last-child(2)
+        {
+            transform-origin: 0% 100%;
+        }
+
+        #menuToggle input:checked ~ span
+        {
+            opacity: 1;
+            transform: rotate(45deg) translate(-2px, -1px);
+            background: #232323;
+        }
+
+        #menuToggle input:checked ~ span:nth-last-child(3)
+        {
+            opacity: 0;
+            transform: rotate(0deg) scale(0.2, 0.2);
+        }
+
+        #menuToggle input:checked ~ span:nth-last-child(2)
+        {
+            transform: rotate(-45deg) translate(0, -1px);
+        }
+
+        #menu
+        {
+            position: absolute;
+            width: 13em;
+            margin: -100px 0 0 -50px;
+            padding: 50px;
+            padding-top: 125px;
+            background:  rgb(211, 211, 211);
+            border-radius: 0 0 2em 0;
+            list-style-type: none;
+            -webkit-font-smoothing: antialiased;
+            transform-origin: 0% 0%;
+            transform: translate(-100%, 0);
+            transition: transform 0.5s cubic-bezier(0.77,0.2,0.05,1.0);
+        }
+
+        #menu li
+        {
+            padding: 10px 0;
+            font-size: 22px;
+        }
+
+        #menuToggle input:checked ~ ul
+        {
+            transform: none;
+        }
+
+        .center {
+            text-align: center;
+        }
+    </style>
+</head>
+<body>
+    <!-- Navig Menu Starts -->
+    <nav role="navigation">
+        <div id="menuToggle">
+          <input type="checkbox" />
+          <span></span>
+          <span></span>
+          <span></span>
+          <ul id="menu">
+            <a href="index.html"><li>Home</li></a>
+            <a href="about.html"><li>About</li></a>
+            <a href="weather-sounds.html"><li>Weather Sounds</li></a>
+          </ul>
+        </div>
+    </nav>
+    <!-- Navig Menu Ends -->
+    <div class="bg"></div>
+    <div class="lightning flashit"></div>
+    <div class="center">
+    <header class="grid-container__header">
+        <h1 class="linear-wipe">Weather Sounds on Loop</h1>
+    </header>
+    <main class="grid-container__main text-border">
+        <h3>Thunderstorm Sound</h3>
+        <audio controls src="sounds/thunderstorm.mp3" loop>
+            Your browser does not support the audio tag.
+        </audio>
+        <h3>Wind Sound</h3>
+        <audio controls src="sounds/wind.mp3" loop>
+            Your browser does not support the audio tag.
+        </audio>
+        <h3>Rain Sound</h3>
+        <audio controls src="sounds/rain.mp3" loop>
+            Your browser does not support the audio tag.
+        </audio>
+    </main>
+    <footer class="grid-container__footer text-border">
+        <p><a href="index.html">Return to Home</a></p>
+    </footer>
+    </div>
+</body>
+</html>

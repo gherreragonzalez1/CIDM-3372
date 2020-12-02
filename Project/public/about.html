@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Final Project Example</title>
+
+    <!-- normalize.css 
+         https://necolas.github.io/normalize.css/
+    -->
+    <link rel="stylesheet" href="css/normalize.css">
+
+    <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+
+    <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link href="https://fonts.googleapis.com/css2?family=Work+Sans&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Oxygen&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;700&display=swap" rel="stylesheet">
+
+    <!-- my styles -->
+    <link rel="stylesheet" href="css/styles.css" />
+
+    <link rel="stylesheet" href="css/gerardo.css">
+
+    <link rel="stylesheet" 
+          href="https://unpkg.com/leaflet@1.7.1/dist/leaflet.css"
+          integrity="sha512-xodZBNTC5n17Xt2atTPuE1HxjVMSvLVW9ocqUKLsCC5CXdbqCmblAshOMAS6/keqq/sMZMZ19scR4PsZChSR7A=="
+          crossorigin=""/>
+
+    <!-- Make sure you put this AFTER Leaflet's CSS -->
+    <script src="https://unpkg.com/leaflet@1.7.1/dist/leaflet.js"
+            integrity="sha512-XQoYMqMTK8LvdxXYG3nZ448hOEQiglfqkJs1NOQV44cWnUrBc8PkAOcXy20w0vlaXaVUearIOBhiXZ5V3ynxwA=="
+            crossorigin=""></script>
+
+    <!-- at the moment, the order of these matters -->
+    <script src="js/localstorage.js"></script>
+    <script src="js/utils.js"></script>    
+    <script src="js/mapstuff.js"></script>
+    <script src="js/weatherstuff.js"></script>
+</head>
+<body>
+    <!-- Navig Menu Starts -->
+    <nav role="navigation">
+        <div id="menuToggle">
+        <input type="checkbox" />
+
+        <span></span>
+        <span></span>
+        <span></span>
+        
+        <ul id="menu">
+            <a href="index.html"><li>Home</li></a>
+            <a href="about.html"><li>About</li></a>
+            <a href="weather-sounds.html"><li>Weather Sounds</li></a>
+        </ul>
+        </div>
+    </nav>
+    <!-- Navig Menu Ends -->
+    <div id='stars'></div>
+    <div id='stars2'></div>
+    <div id='stars3'></div>
+    <div class="w3-container">
+        <div class="flex-container w3-animate-left">
+            <h1 id="title">Map and Weather</h1>
+            <p id="subtitle">Showing leaflet, fetch, grid, flex, and W3CSS</p>
+        </div>
+        <div class="grid-container">
+            <header class="gradient">
+                <h3><b>About this Website</b></h3>
+            </header>
+            <aside>
+                <div class="w3-container gradient">
+                    <h3><i class="material-icons" style="font-size:.8em;">&#xe8fd;</i> Help</h3>
+                </div>
+                <p>Don't know any CIAO airport codes? Here are some codes 
+                  of the World Top Airports you can use on the <a href="index.html">homepage</a>!</p>
+                <p>
+                    <!-- Gradient text - a gradient for each country flag (colors) -->
+                    <b class="linear-wipe--uae">OMDB</b> - Dubai Int'l Airport</br>
+                    <b class="linear-wipe--usa">KLAX</b> - Los Angeles Int'l Airport</br>
+                    <b class="linear-wipe--china">ZBAA</b> - Beijing Capital Int'l Airport</br>
+                    <b class="linear-wipe--usa">KATL</b> - Hartsfield-Jackson Atlanta Int'l Airport</br>
+                    <b class="linear-wipe--jp">RJTT</b> - Tokyo Haneda Airport</br>
+                    <b class="linear-wipe--usa">KORD</b> - O'Hare Int'l Airport</br>
+                    <b class="linear-wipe--fr">LFPG</b> - Charles de Gaulle Airport</br>
+                    <b class="linear-wipe--nl">EHAM</b> - Amsterdam Airport Schiphol</br>
+                    <b class="linear-wipe--china">VHHH</b> - Hong Kong Int'l Airport</br>
+                    <b class="linear-wipe--kr">RKSI</b> - Seoul Incheon Int'l Airport</br>
+                    <b class="linear-wipe--uk">EGLL</b> - London Heathrow Airport</br>
+                </p>
+            </aside>   
+            <aside>
+                <div class="w3-container gradient">
+                    <h3><i class="material-icons" style="font-size:.8em;">&#xe88f;</i> What does it do?</h3>
+                </div>
+                <p>
+                    This website lets you look up an airport using
+                    its ICAO airport code (location indicator) to see its METAR report.
+                </p>
+                <p>
+                    <b class="linear-wipe">METAR</b> (Aviation Routine Weather Report) reports typically come from airports or permanent weather observation stations. 
+                    Reports are typically generated once an hour; if conditions change significantly, however, they can be updated in special reports called SPECI's (acronym roughly translates as Aviation Selected Special Weather Report). 
+                    Meanwhile, the international standard code format for terminal forecasts issued for airports, TAF, also took effect. 
+                </p>
+                <div>
+                <img src="img/metar.jpg" alt="METAR" class="cropped center">
+                </div>
+            </aside>              
+            <aside>
+                <div class="w3-container gradient">
+                    <h3><i class="material-icons" style="font-size:.8em;">&#xe7fc;</i> Contact info</h3>
+                </div>
+                <p><b>Dr. Babb's GitHub: </b></br><a href="https://github.com/ahuimanu">Click Here</a></p>
+                <p><b>Gerardo Herrera's GitHub: </b></br><a href="https://github.com/gherreragonzalez1">Click Here</a></p>
+                <p><b>Email address:</b></br> gherreragonzalez1@buffs.wtamu.edu</p>
+            </aside>
+            <footer>
+                <p>Original project code created by Dr. Babb for CIDM-3372, Fall 2020. The original files can be found on
+                    <a href="https://github.com/ahuimanu/CIDM3372/tree/master/Project">Dr. Babb's GitHub</a>.
+                </p>
+            </footer>
+        </div>
+    </div>
+</body>
+</html>
