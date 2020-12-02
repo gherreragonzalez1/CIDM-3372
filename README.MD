@@ -1,4 +1,4 @@
-# CIDM 3372
+# 2020FA CIDM-3372
 
 ## Assignment 3
 The [Assignment3 folder](https://github.com/gherreragonzalez1/CIDM-3372/tree/master/Assignment3) includes a unit converter using NodeJS to create a CLI.
