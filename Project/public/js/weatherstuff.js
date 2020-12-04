@@ -365,7 +365,7 @@ const selectWeatherIcon = async (json) => {
                 }
             }
 
-            //are there any METAR codes present?
+            // are there any METAR codes present?
             if(wxstr){
 
                 // pattern matches
@@ -374,7 +374,7 @@ const selectWeatherIcon = async (json) => {
 
                 const wx_string = metar.wx_string[0]
 
-                //SNOW
+                // SNOW
                 const snow_pattern = /SN/g
                 if(snow_pattern.exec(wx_string)) {
                     weather_icon_img_alt = "snow"                    
@@ -385,7 +385,7 @@ const selectWeatherIcon = async (json) => {
                     }
                 }
 
-                //SNOW and SNOW GRAINS
+                // SNOW and SNOW GRAINS
                 const snow_frozen_pattern = /SN(?=.*SG)/g
                 if(snow_frozen_pattern.exec(wx_string)) {
                     weather_icon_img_alt = "snow"
@@ -396,7 +396,7 @@ const selectWeatherIcon = async (json) => {
                     }
                 }
 
-                //RAIN and SNOW
+                // RAIN and SNOW
                 const rain_snow_pattern = /RA(?=.*SN)/g
                 if(rain_snow_pattern.exec(wx_string)) {
                     weather_icon_img_alt = "rain and snow"                    
@@ -407,7 +407,7 @@ const selectWeatherIcon = async (json) => {
                     }
                 }
 
-                //RAIN + ice (RA + IC|PE|PL|GR)
+                // RAIN + ICE (RA + IC|PE|PL|GR)
                 const rain_ice_pattern = /RA(?=.*IC|.*PE|.*PL)/g
                 if(rain_ice_pattern.exec(wx_string)) {
                     weather_icon_img_alt = "rain and ice"
@@ -418,7 +418,7 @@ const selectWeatherIcon = async (json) => {
                     }
                 }
 
-                //Freezing RAIN (FZRA)
+                // FREEZING RAIN (FZRA)
                 const freezing_rain_pattern = /FZRA/g
                 if(freezing_rain_pattern.exec(wx_string)) {
                     weather_icon_img_alt = "freezing rain"                    
@@ -429,14 +429,18 @@ const selectWeatherIcon = async (json) => {
                     }
                 }
 
-                //FREEZING RAIN (FZRA + RA)
+                // FREEZING RAIN (FZRA + RA)
                 const rain_freezing_rain_pattern = /RA(?=.*FZRA)/g
                 if(rain_freezing_rain_pattern.exec(wx_string)) {
-                    weather_icon_img_src = `${IMG_DAY_PREFIX}ra_fzra.png`
-                    weather_icon_img_alt = "rain and freezing rain"                    
+                    weather_icon_img_alt = "rain and freezing rain"
+                    if(day) {
+                        weather_icon_img_src = `${IMG_DAY_PREFIX}ra_fzra.png`   
+                    } else {
+                        weather_icon_img_src = `${IMG_DAY_PREFIX}nra_fzra.png`   
+                    }
                 }
 
-                //FREEZING RAIN DRIZZLE SNOW (FZRA + SN)
+                // FREEZING RAIN DRIZZLE SNOW (FZRA + SN)
                 const freezing_rain_snow_pattern = /FZRA(?=.*SN)/g
                 if(freezing_rain_snow_pattern.exec(wx_string)) {
                     weather_icon_img_alt = "freezing rain and snow"
@@ -447,7 +451,7 @@ const selectWeatherIcon = async (json) => {
                     }
                 }
 
-                //ICE CRYSTALS, ICE PELLETS, HAIL (IC PE PL GR)
+                // ICE CRYSTALS, ICE PELLETS, HAIL (IC PE PL GR)
                 const ice_pattern = /IC|PE|PL|GR/g
                 if(ice_pattern.exec(wx_string)) {
                     weather_icon_img_alt = "freezing rain and snow"
@@ -458,7 +462,7 @@ const selectWeatherIcon = async (json) => {
                     }
                 }                
 
-                //SNOW + ICE PELLETS (SN IC PE PL)
+                // SNOW + ICE PELLETS (SN IC PE PL)
                 const snow_ice_pattern = /SN(?=.*IC|.*PE|.*PL)/g
                 if(snow_ice_pattern.exec(wx_string)) {
                     weather_icon_img_alt = "snow and ice"
@@ -469,7 +473,7 @@ const selectWeatherIcon = async (json) => {
                     }
                 }
 
-                //-RAIN, DRIZZLE, FOG/MIST (-RA DZ FG|BR)
+                // -RAIN, DRIZZLE, FOG/MIST (-RA DZ FG|BR)
                 const light_rain_pattern = /-RA|DZ/g
                 if(light_rain_pattern.exec(wx_string)) {
                     weather_icon_img_alt = "light rain"
@@ -490,7 +494,7 @@ const selectWeatherIcon = async (json) => {
                     }
                 }                
 
-                //RAIN, +RAIN + FOG/MIST, FOG (RA & FG|BR)
+                // RAIN, +RAIN + FOG/MIST, FOG (RA & FG|BR)
                 const rain_pattern = /RA/g
                 if(rain_pattern.exec(wx_string)) {
                     weather_icon_img_alt = "rain"
@@ -501,7 +505,7 @@ const selectWeatherIcon = async (json) => {
                     }
                 }
 
-                //RAIN SHOWERS (SHRA)
+                // RAIN SHOWERS (SHRA)
                 const rain_showers_pattern = /SHRA/g
                 if(rain_showers_pattern.exec(wx_string)) {
                     weather_icon_img_alt = "rain showers"
@@ -512,7 +516,7 @@ const selectWeatherIcon = async (json) => {
                     }
                 }
 
-                //SHOWERS VICINITY + FOG/MIST, HAZE
+                // SHOWERS VICINITY + FOG/MIST, HAZE
                 const hi_shwrs_pattern = /VCSHRA/g
                 if(hi_shwrs_pattern.exec(wx_string)) {
                     weather_icon_img_alt = "showers in the vicinity"
@@ -523,7 +527,7 @@ const selectWeatherIcon = async (json) => {
                     }
                 }                
 
-                //TSRA or VCTS or TS
+                // TSRA or VCTS or TS
                 const thunderstorm_pattern = /TSRA/g
                 if(thunderstorm_pattern.exec(wx_string)) {
                     weather_icon_img_alt = "Thunderstorm"
@@ -558,7 +562,7 @@ const selectWeatherIcon = async (json) => {
                     }                    
                 }
 
-                //DUST
+                // DUST
                 const dust_pattern = /DU/g
                 if(dust_pattern.exec(wx_string)) {
                     weather_icon_img_alt = "Dust"
@@ -569,7 +573,7 @@ const selectWeatherIcon = async (json) => {
                     }
                 }
 
-                //SMOKE
+                // SMOKE
                 const smoke_pattern = /FU/g
                 if(smoke_pattern.exec(wx_string)) {
                     weather_icon_img_alt = "Smoke"
@@ -580,7 +584,7 @@ const selectWeatherIcon = async (json) => {
                     }
                 }
 
-                //HAZE
+                // HAZE
                 const haze_pattern = /HZ/g
                 if(haze_pattern.exec(wx_string)) {
                     weather_icon_img_alt = "Haze"
@@ -591,7 +595,7 @@ const selectWeatherIcon = async (json) => {
                     }
                 }
 
-                //FOG
+                // FOG
                 const fog_pattern = /FG/g
                 if(fog_pattern.exec(wx_string)) {
                     weather_icon_img_alt = "Fog"
@@ -602,7 +606,7 @@ const selectWeatherIcon = async (json) => {
                     }
                 }
 
-                //FUNNEL CLOUD
+                // FUNNEL CLOUD
                 const funnel_cloud_pattern = /FC/g
                 if(funnel_cloud_pattern.exec(wx_string)) {
                     weather_icon_img_alt = "Funnel Cloud"
@@ -615,11 +619,11 @@ const selectWeatherIcon = async (json) => {
 
 
             } else {
-                //look for sky coverage
+                // look for sky coverage
                 if(skycond){
-                    //check for gusts
+                    // check for gusts
                     if(gusts){
-                        //WIND CLEAR
+                        // CLEAR + WIND
                         if(greatest == "SKC") {
                             weather_icon_img_alt = "Windy"
                             if(day) {
@@ -628,7 +632,7 @@ const selectWeatherIcon = async (json) => {
                                 weather_icon_img_src = `${IMG_NIGHT_PREFIX}nwind_skc.png`
                             }
                         } 
-                        //WIND FEW
+                        //FEW + WIND
                         else if (greatest == "FEW") {
                             weather_icon_img_alt = "Few clouds and windy"
                             if(day) {
@@ -637,7 +641,7 @@ const selectWeatherIcon = async (json) => {
                                 weather_icon_img_src = `${IMG_NIGHT_PREFIX}nwind_few.png`
                             }
                         }
-                        //WIND SCT
+                        // SCT + WIND
                         else if (greatest == "SCT") {
                             weather_icon_img_alt = "Partly clouds"
                             if(day) {
@@ -646,16 +650,16 @@ const selectWeatherIcon = async (json) => {
                                 weather_icon_img_src = `${IMG_NIGHT_PREFIX}nwind_sct.png`
                             }
                         }
-                        //WIND BKN
+                        // BKN + WIND
                         else if (greatest == "BKN") {
                             weather_icon_img_alt = "Mostly cloudy"
                             if(day) {
-                                weather_icon_img_src = `${IMG_DAY_PREFIX}bkn.png`
+                                weather_icon_img_src = `${IMG_DAY_PREFIX}wind_bkn.png`
                             } else {
-                                weather_icon_img_src = `${IMG_NIGHT_PREFIX}nbkn.png`
+                                weather_icon_img_src = `${IMG_NIGHT_PREFIX}nwind_bkn.png`
                             }
                         }
-                        //WIND OVR
+                        // OVR + Wind
                         else if (greatest == "OVC") {
                             weather_icon_img_alt = "Overcast"
                             if(day) {
@@ -665,9 +669,9 @@ const selectWeatherIcon = async (json) => {
                             }
                         }                        
                     } 
-                    //no gusts
+                    // No gusts
                     else {
-                        //CLEAR
+                        // CLEAR
                         if(greatest == "SKC") {
                             weather_icon_img_alt = "Sky Clear"
                             if(day) {
@@ -676,7 +680,7 @@ const selectWeatherIcon = async (json) => {
                                 weather_icon_img_src = `${IMG_NIGHT_PREFIX}nskc.png`
                             }
                         } 
-                        //FEW
+                        // FEW
                         else if (greatest == "FEW") {
                             weather_icon_img_alt = "Few clouds"
                             if(day) {
@@ -685,7 +689,7 @@ const selectWeatherIcon = async (json) => {
                                 weather_icon_img_src = `${IMG_NIGHT_PREFIX}nfew.png`
                             }
                         }
-                        //SCT 
+                        // SCT 
                         else if (greatest == "SCT") {
                             weather_icon_img_alt = "Partly cloudy"
                             if(day) {
@@ -694,7 +698,7 @@ const selectWeatherIcon = async (json) => {
                                 weather_icon_img_src = `${IMG_NIGHT_PREFIX}nsct.png`
                             }
                         }
-                        //BKN
+                        // BKN
                         else if (greatest == "BKN") {
                             weather_icon_img_alt = "Mostly cloudy"
                             if(day) {
@@ -703,7 +707,7 @@ const selectWeatherIcon = async (json) => {
                                 weather_icon_img_src = `${IMG_NIGHT_PREFIX}nbkn.png`
                             }
                         }
-                        //OVR
+                        // OVR
                         else if (greatest == "OVC") {
                             weather_icon_img_alt = "Overcast"
                             if(day) {
@@ -716,7 +720,7 @@ const selectWeatherIcon = async (json) => {
                 } 
                 // no sky conditions
                 else {
-                    //CLEAR
+                    // CLEAR
                     weather_icon_img_alt = "Sky Clear"
                     if(day) {
                         weather_icon_img_src = `${IMG_DAY_PREFIX}skc.png`
