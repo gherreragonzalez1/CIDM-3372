@@ -132,35 +132,42 @@ const updateWeatherOutput = async (json, site) => {
     // extract metar collection
     const metar = json.response.data[0].METAR[0]
 
+    // <div id="site_name" class="weather-element"></div>
+    // site name
+    const site_name_output = `<strong>SITE:</strong> ${site}`
+    const site_name_element = document.querySelector('#site_name')
+    site_name_element.innerHTML = site_name_output
+
     // <div id="station_id" class="weather-element"></div>
-    //station id
+    // station
     const station_id = metar.station_id[0]
     const station_id_output = `<strong>STATION:</strong> ${station_id}`
     const station_id_element = document.querySelector('#station_id')
     station_id_element.innerHTML = station_id_output
 
-    // <div id="station_id" class="weather-element"></div>
+    // <div id="observation_time" class="weather-element"></div>
+    // observation time
     const observation_time = metar.observation_time[0]
     const observation_time_output = `<strong>OBSERVED:</strong> ${observation_time}`
     const observation_time_element = document.querySelector('#observation_time')
     observation_time_element.innerHTML = observation_time_output
 
     // <div id="raw_metar" class="weather-element"></div>
-    //raw metar
+    // raw metar
     const raw_metar = metar.raw_text[0]
     const raw_metar_output = `<strong>METAR:</strong> ${raw_metar}`
     const raw_metar_element = document.querySelector('#raw_metar')
     raw_metar_element.innerHTML = raw_metar_output
 
     // <div id="latitude" class="weather-element"></div>
-    //latitude
+    // latitude
     const latitude = metar.latitude[0]
     const latitude_output = `<strong>LAT:</strong> ${latitude}`
     const latitude_element = document.querySelector('#latitude')
     latitude_element.innerHTML = latitude_output
 
     // <div id="longitude" class="weather-element"></div>
-    //longitude            
+    // longitude            
     const longitude = metar.longitude[0]
     const longitude_output = `<strong>LON:</strong> ${longitude}`
     const longitude_element = document.querySelector('#longitude')
@@ -176,7 +183,7 @@ const updateWeatherOutput = async (json, site) => {
     headtext.textContent = `${site} - LAT: ${latitude} LON: ${longitude}`
 
     // <div id="temp" class="weather-element"></div>    
-    //temp
+    // temp
     const temp_c = metar.temp_c[0];
     const temp_f = CtoF(temp_c)
     const temp_output = `<strong>TEMP:</strong> ${temp_c} C (${temp_f} F)`
@@ -184,7 +191,7 @@ const updateWeatherOutput = async (json, site) => {
     temp_element.innerHTML = temp_output
 
     // <div id="dewpoint" class="weather-element"></div>    
-    //dewpoint
+    // dewpoint
     const dewpoint_c = metar.dewpoint_c[0];
     const dewpoint_f = CtoF(dewpoint_c)
     const dewpoint_output = `<strong>DEWPOINT:</strong> ${dewpoint_c} C (${dewpoint_f} F)`
@@ -192,12 +199,12 @@ const updateWeatherOutput = async (json, site) => {
     dewpoint_element.innerHTML = dewpoint_output
 
     // <div id="wind" class="weather-element"></div>    
-    //wind
+    // wind
     const wind_dir_degrees = metar.wind_dir_degrees[0]
     const wind_speed_kt = metar.wind_speed_kt[0]
     let wind_output = null    
 
-    //check for gusts
+    // check for gusts
     let wind_gust_kt = null
     if(metar.wind_gust_kt != undefined){
         wind_gust_kt = metar.wind_gust_kt[0]
