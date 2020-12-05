@@ -104,6 +104,13 @@ header, footer {
     background-color: darkslategray;
 }
 
+.myDivIcon {
+    text-align: center;
+    /* Horizontally center the text (icon) */
+    line-height: 20px;
+    /* Vertically center the text (icon) */
+  } 
+
 .center {
     text-align: center;
 }

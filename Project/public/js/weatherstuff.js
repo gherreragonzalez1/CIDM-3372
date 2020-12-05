@@ -138,8 +138,9 @@ const updateWeatherOutput = async (json, site) => {
     const site_name_element = document.querySelector('#site_name')
     site_name_element.innerHTML = site_name_output
 
+
     // <div id="station_id" class="weather-element"></div>
-    // station
+    // station id
     const station_id = metar.station_id[0]
     const station_id_output = `<strong>STATION:</strong> ${station_id}`
     const station_id_element = document.querySelector('#station_id')
@@ -150,7 +151,7 @@ const updateWeatherOutput = async (json, site) => {
     const observation_time = metar.observation_time[0]
     const observation_time_output = `<strong>OBSERVED:</strong> ${observation_time}`
     const observation_time_element = document.querySelector('#observation_time')
-    observation_time_element.innerHTML = observation_time_output
+    station_id_element.innerHTML = observation_time_output
 
     // <div id="raw_metar" class="weather-element"></div>
     // raw metar
@@ -167,31 +168,46 @@ const updateWeatherOutput = async (json, site) => {
     latitude_element.innerHTML = latitude_output
 
     // <div id="longitude" class="weather-element"></div>
-    // longitude            
+    //longitude            
     const longitude = metar.longitude[0]
     const longitude_output = `<strong>LON:</strong> ${longitude}`
     const longitude_element = document.querySelector('#longitude')
     longitude_element.innerHTML = longitude_output
 
+    // <div id="temp" class="weather-element"></div>    
+    //temp
+    const temp_c = metar.temp_c[0];
+    const temp_f = CtoF(temp_c)
+    const temp_output = `<strong>TEMP:</strong> ${temp_c} C (${temp_f} F)`
+    const temp_element = document.querySelector('#temp')
+    temp_element.innerHTML = temp_output    
+
     // MAP
     // move the map to this new position
     const zoom = 11;            
     mymap.flyTo([latitude, longitude], zoom);
+    const titleText = `${latitude} ${longitude}`
+    const myIcon = L.divIcon({ className: 'myDivIcon',
+                               html: '<i class="fas fa-map-marker-alt"></i>',
+                               iconSize: [20, 20]
+                            })
+    const marker = L.marker([latitude, longitude], 
+        {
+            title: titleText,
+            alt: "location",
+            riseOnHover: true,
+        })
+    marker.addTo(mymap)
+    marker.bindPopup(`<strong>STATION:</strong> ${station_id}<br>
+                      <strong>TEMP:</strong> ${temp_c} C (${temp_f} F)`)
+    marker.openPopup()
 
     // set coords at top of page
     const headtext = document.querySelector('#headertext');
     headtext.textContent = `${site} - LAT: ${latitude} LON: ${longitude}`
 
-    // <div id="temp" class="weather-element"></div>    
-    // temp
-    const temp_c = metar.temp_c[0];
-    const temp_f = CtoF(temp_c)
-    const temp_output = `<strong>TEMP:</strong> ${temp_c} C (${temp_f} F)`
-    const temp_element = document.querySelector('#temp')
-    temp_element.innerHTML = temp_output
-
     // <div id="dewpoint" class="weather-element"></div>    
-    // dewpoint
+    //dewpoint
     const dewpoint_c = metar.dewpoint_c[0];
     const dewpoint_f = CtoF(dewpoint_c)
     const dewpoint_output = `<strong>DEWPOINT:</strong> ${dewpoint_c} C (${dewpoint_f} F)`
@@ -199,12 +215,12 @@ const updateWeatherOutput = async (json, site) => {
     dewpoint_element.innerHTML = dewpoint_output
 
     // <div id="wind" class="weather-element"></div>    
-    // wind
+    //wind
     const wind_dir_degrees = metar.wind_dir_degrees[0]
     const wind_speed_kt = metar.wind_speed_kt[0]
     let wind_output = null    
 
-    // check for gusts
+    //check for gusts
     let wind_gust_kt = null
     if(metar.wind_gust_kt != undefined){
         wind_gust_kt = metar.wind_gust_kt[0]
@@ -264,7 +280,7 @@ const updateWeatherOutput = async (json, site) => {
         case 'MVFR':
             flight_category_output = `<strong><span class="mvfr-flight-category">${flight_category}</strong>`            
             break;
-        case 'IFR': 
+        case 'IFR':
             flight_category_output = `<strong><span class="ifr-flight-category">${flight_category}</strong>`            
             break;
         case 'LIFR':
@@ -282,9 +298,24 @@ const updateWeatherOutput = async (json, site) => {
     const metarTableElement = document.querySelector('#metar_table')
     const rowCount = metarTableElement.rows.length
 
-    if(rowCount > 6)
+    if(rowCount > 5)
     {
         metarTableElement.deleteRow(rowCount - 1)
+
+        const row = metarTableElement.insertRow(1)
+
+        var stationIdCell = row.insertCell(0)
+        stationIdCell.innerHTML = `<button onclick="refreshMETAR('${station_id}')">${station_id}</button>`
+
+        var latitudeCell = row.insertCell(1)
+        latitudeCell.innerHTML = `<span onclick="refreshMETAR('${station_id}')">${latitude}</span>`
+
+        var longitudeCell = row.insertCell(2)
+        longitudeCell.innerHTML = `<span onclick="refreshMETAR('${station_id}')">${longitude}</span>`
+
+        var rawMETARCell = row.insertCell(3)
+        rawMETARCell.innerHTML = `<span onclick="refreshMETAR('${station_id}')">${raw_metar}</span>`      
+
     } else {
 
         const row = metarTableElement.insertRow(1)
