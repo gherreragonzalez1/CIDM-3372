@@ -151,7 +151,7 @@ const updateWeatherOutput = async (json, site) => {
     const observation_time = metar.observation_time[0]
     const observation_time_output = `<strong>OBSERVED:</strong> ${observation_time}`
     const observation_time_element = document.querySelector('#observation_time')
-    station_id_element.innerHTML = observation_time_output
+    observation_time_element.innerHTML = observation_time_output
 
     // <div id="raw_metar" class="weather-element"></div>
     // raw metar
