@@ -38,3 +38,39 @@ Some guidance on creating node modules can be found here: [How To Create a Node.
 * [Symbol and METAR Code table](https://www.aviationweather.gov/metar/symbol)
 * [NOAA Forecase Icons](https://www.weather.gov/forecast-icons)
 * [Sunrise/Sunset API](https://sunrise-sunset.org/api)
+
+### How do I run this?
+
+**November 29th, 2020:**
+
+Presently, only the server runs and shares data from the endpoints.
+
+The server can be run from the Project folder using this command:
+
+* Pre-requisites!
+    * make sure you have [NodeJS installed](https://nodejs.org/en/download/).
+    * with my downloaded code, go into the Project folder and run: `npm install`
+        * go into each of the following folders and repeat `npm install`
+            * `station-utils`
+            * `sunrise-sunset-utils`
+            * `weather-utils`
+
+**TIP:** Useful article about keeping NPM packages updated within a project: [https://flaviocopes.com/update-npm-dependencies/](https://flaviocopes.com/update-npm-dependencies/)
+
+Now, you can run the server with this command from the main Project folder:
+
+`npm start`
+
+The client calls data from these endpoints and you can run them directly as well.
+
+**SERVER MUST BE RUNNING!**
+* `http://localhost:3000/sunrise_sunset/:lat/:lng`
+    * try running this sample: [http://localhost:3000/sunrise_sunset/34.98289497028858/-101.91698595800695](http://localhost:3000/sunrise_sunset/34.98289497028858/-101.91698595800695)
+* `http://localhost:3000/addsmetar/:station`
+    * try running this sample: [http://localhost:3000/addsmetar/KDFW](http://localhost:3000/addsmetar/KDFW)
+
+The client code consumes this information from the server and shows it in the webpages.
+
+## Running the app
+
+Point your browser to [http://localhost:3000](http://localhost:3000)
