@@ -644,6 +644,17 @@ const selectWeatherIcon = async (json) => {
                     }
                 }
 
+                //MIST
+                const mist_pattern = /BR/g
+                if(mist_pattern.exec(wx_string)) {
+                    weather_icon_img_alt = "Fog/Mist"
+                    if(day) {
+                        weather_icon_img_src = `${IMG_DAY_PREFIX}fg.png`
+                    } else {
+                        weather_icon_img_src = `${IMG_NIGHT_PREFIX}nfg.png`
+                    }
+                }       
+
                 // FUNNEL CLOUD
                 const funnel_cloud_pattern = /FC/g
                 if(funnel_cloud_pattern.exec(wx_string)) {
